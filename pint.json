@@ -1,0 +1,12 @@
+{
+    "preset": "psr12",
+    "rules": {
+        "concat_space": false,
+        "new_with_parentheses": {
+            "anonymous_class": false
+        },
+        "braces_position": {
+            "anonymous_classes_opening_brace": "next_line_unless_newline_at_signature_end"
+        }
+    }
+}

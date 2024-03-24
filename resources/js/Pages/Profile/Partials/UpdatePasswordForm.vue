@@ -12,7 +12,7 @@ const currentPasswordInput = ref(null);
 const form = useForm({
     current_password: '',
     password: '',
-    password_confirmation: '',
+    password_confirmation: ''
 });
 
 const updatePassword = () => {
@@ -28,7 +28,7 @@ const updatePassword = () => {
                 form.reset('current_password');
                 currentPasswordInput.value.focus();
             }
-        },
+        }
     });
 };
 </script>

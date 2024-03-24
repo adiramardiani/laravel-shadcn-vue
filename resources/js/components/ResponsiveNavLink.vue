@@ -5,11 +5,11 @@ import { Link } from '@inertiajs/vue3';
 const props = defineProps({
     href: {
         type: String,
-        required: true,
+        required: true
     },
     active: {
-        type: Boolean,
-    },
+        type: Boolean
+    }
 });
 
 const classes = computed(() =>
