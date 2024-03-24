@@ -42,7 +42,7 @@ const submit = () => {
                     {{ status }}
                 </div>
 
-                <div class="grid gap-2">
+                <div class="mt-6 grid gap-2">
                     <Label for="email">Email</Label>
                     <Input id="email" v-model="form.email" type="email" required autofocus autocomplete="username" />
                     <InputError :message="form.errors.email" />
