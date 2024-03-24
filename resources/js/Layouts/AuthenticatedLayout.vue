@@ -9,6 +9,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
+import DarkMode from '@/components/DarkMode.vue';
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -98,6 +100,7 @@ import {
                             />
                         </div>
                     </form>
+                    <DarkMode />
                     <DropdownMenu>
                         <DropdownMenuTrigger as-child>
                             <Button variant="secondary" size="icon" class="rounded-full">
