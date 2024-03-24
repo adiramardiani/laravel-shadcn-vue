@@ -1,5 +1,6 @@
 <script setup>
 import { useVModel } from '@vueuse/core';
+import { ref, onMounted } from 'vue';
 import { cn } from '@/lib/utils';
 
 const props = defineProps({
@@ -14,10 +15,21 @@ const modelValue = useVModel(props, 'modelValue', emits, {
     passive: true,
     defaultValue: props.defaultValue
 });
+
+const input = ref(null);
+
+onMounted(() => {
+    if (input.value.hasAttribute('autofocus')) {
+        input.value.focus();
+    }
+});
+
+defineExpose({ focus: () => input.value.focus() });
 </script>
 
 <template>
     <input
+        ref="input"
         v-model="modelValue"
         :class="
             cn(
