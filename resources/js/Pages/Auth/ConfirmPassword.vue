@@ -1,9 +1,12 @@
 <script setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/components/InputError.vue';
-import InputLabel from '@/components/InputLabel.vue';
-import PrimaryButton from '@/components/PrimaryButton.vue';
-import TextInput from '@/components/TextInput.vue';
+
+import { CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
 import { Head, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
@@ -21,30 +24,28 @@ const submit = () => {
     <GuestLayout>
         <Head title="Confirm Password" />
 
-        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            This is a secure area of the application. Please confirm your password before continuing.
-        </div>
-
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                    autofocus
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
+            <CardContent class="grid gap-4">
+                <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    This is a secure area of the application. Please confirm your password before continuing.
+                </div>
 
-            <div class="mt-4 flex justify-end">
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Confirm
-                </PrimaryButton>
-            </div>
+                <div class="mt-6 grid gap-2">
+                    <Label for="password">Password</Label>
+                    <Input
+                        id="password"
+                        v-model="form.password"
+                        type="password"
+                        required
+                        autocomplete="current-password"
+                        autofocus
+                    />
+                    <InputError :message="form.errors.password" />
+                </div>
+            </CardContent>
+            <CardFooter>
+                <Button class="w-full" :disabled="form.processing" type="submit">Confirm</Button>
+            </CardFooter>
         </form>
     </GuestLayout>
 </template>

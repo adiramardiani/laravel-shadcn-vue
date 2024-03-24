@@ -1,8 +1,11 @@
 <script setup>
-import { computed } from 'vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import PrimaryButton from '@/components/PrimaryButton.vue';
+
+import { CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 const props = defineProps({
     status: {
@@ -23,30 +26,23 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
     <GuestLayout>
         <Head title="Email Verification" />
 
-        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just
-            emailed to you? If you didn't receive the email, we will gladly send you another.
-        </div>
-
-        <div class="mb-4 text-sm font-medium text-green-600 dark:text-green-400" v-if="verificationLinkSent">
-            A new verification link has been sent to the email address you provided during registration.
-        </div>
-
         <form @submit.prevent="submit">
-            <div class="mt-4 flex items-center justify-between">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Resend Verification Email
-                </PrimaryButton>
+            <CardContent class="grid gap-4">
+                <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we
+                    just emailed to you? If you didn't receive the email, we will gladly send you another.
+                </div>
 
-                <Link
-                    :href="route('logout')"
-                    method="post"
-                    as="button"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
-                >
+                <div v-if="verificationLinkSent" class="text-sm font-medium text-green-600 dark:text-green-400">
+                    A new verification link has been sent to the email address you provided during registration.
+                </div>
+            </CardContent>
+            <CardFooter class="flex items-center justify-between">
+                <Button :disabled="form.processing" type="submit">Resend Verification Email</Button>
+                <Link :href="route('logout')" method="post" as="button" class="ml-auto inline-block text-sm underline">
                     Log Out
                 </Link>
-            </div>
+            </CardFooter>
         </form>
     </GuestLayout>
 </template>
