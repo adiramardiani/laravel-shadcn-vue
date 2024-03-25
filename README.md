@@ -64,3 +64,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Running Queue
+
+php artisan queue:listen --memory=2048 --timeout=16000 --queue=high,medium,low,default
+
+## Reset Cache
+
+php artisan permission:cache-reset
